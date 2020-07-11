@@ -7,6 +7,7 @@ class DishDetail extends Component{
     renderDish(dish) {
         if (dish != null)
             return(
+                <div  className="col-12 col-md-5 m-1">
                 <Card>
                     <CardImg top src={dish.image} alt={dish.name} />
                     <CardBody>
@@ -14,6 +15,7 @@ class DishDetail extends Component{
                       <CardText>{dish.description}</CardText>
                     </CardBody>
                 </Card>
+                </div>
             );
         else
             return(
@@ -21,13 +23,13 @@ class DishDetail extends Component{
             );
     }
 
-    renderComments(dish){
-        if (dish.comments != null)
+    renderComments(comments){
+        if (comments != null)
             return(
-                <div>
+                <div className="col-12 col-md-5 m-1" >
                     <h4>Comments</h4>
                     <ul className="list-unstyled">
-                    {dish.comments.map((comment) => {
+                    {comments.map((comment) => {
                         return (
                             <div>
                             <li>{comment.comment}</li> <br></br>
@@ -45,17 +47,18 @@ class DishDetail extends Component{
     }
 
     render() {
-
+        if(this.props.dish != null){
         return (
             <div className="row">
-                <div  className="col-12 col-md-5 m-1">
                     {this.renderDish(this.props.dish)}
-                </div>
-                <div  className="col-12 col-md-5 m-1">
-                    {this.renderComments(this.props.dish)}
-                </div>
+                    {this.renderComments(this.props.dish.comments)}
             </div>
         );
+        }
+        else
+            return(
+                <div></div>
+            );
     }
 }
 
