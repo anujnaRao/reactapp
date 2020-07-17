@@ -36,9 +36,9 @@ class Header extends Component {
         alert("Username: " + this.username.value + " Password: " + this.password.value
             + " Remember: " + this.remember.checked);
         event.preventDefault();
-
     }
-    
+
+
   render() {
     return(
     <React.Fragment>
