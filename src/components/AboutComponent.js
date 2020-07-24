@@ -1,21 +1,27 @@
 import React from 'react';
 import { Breadcrumb, BreadcrumbItem, Card, CardBody, CardHeader, Media } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import { baseUrl } from '../shared/baseUrl';
+import { FadeTransform, Fade, Stagger } from 'react-animation-components'; 
 
 function RenderLeader(props){
     
         return (
             <div className="m-3">
-             <Media tag="li" key ={props.leader.id}>
-                  <Media left top>
-                      <Media object src={props.leader.image} alt={props.leader.name} />
-                  </Media>
-                  <Media body className="ml-5">
-                    <Media heading>{props.leader.name}</Media>
-                    <Media  title>{props.leader.designation}</Media><br></br>
-                    <p>{props.leader.description}</p>
-                  </Media>
-             </Media>
+            <Stagger in>
+                <Media tag="li" key ={props.leader.id}>
+                    <Media left top>
+                        <Media object src={baseUrl + props.leader.image} alt={props.leader.name} />
+                    </Media>
+                    <Fade in>
+                        <Media body className="ml-5">
+                            <Media heading>{props.leader.name}</Media>
+                            <Media  title>{props.leader.designation}</Media><br></br>
+                            <p>{props.leader.description}</p>
+                        </Media>
+                    </Fade>
+                </Media>
+            </Stagger>
         </div>
         );
 
@@ -24,7 +30,7 @@ function RenderLeader(props){
 
 function About(props){
 
-    const leaders = props.leaders.map((leader) => {
+    const leaders = props.leaders.leaders.map((leader) => {
         return (
             <RenderLeader leader={leader} />
         );
